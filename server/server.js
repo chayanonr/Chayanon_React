@@ -14,7 +14,7 @@ app.use(express.json()); // Parse JSON payloads
 app.use(helmet()); // Add security headers
 app.use(morgan('common')); // Log requests
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://your-frontend-domain.com'], // Replace with your frontend domains
+  origin: ['http://localhost:3000', 'https://chayanonrod.vercel.app/'], // Replace with your frontend domains
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));
