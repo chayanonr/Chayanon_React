@@ -14,7 +14,7 @@ const AdminDashboard = () => {
     const fetchUsers = async () => {
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get('http://localhost:5000/api/admin/users', {
+        const response = await axios.get('https://chayanonrod.onrender.com/api/admin/users', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUsers(response.data);
@@ -33,7 +33,7 @@ const AdminDashboard = () => {
     const token = localStorage.getItem('token');
     if (window.confirm('Are you sure you want to delete this user?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/admin/delete/${id}`, {
+        await axios.delete(`https://chayanonrod.onrender.com/api/admin/delete/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUsers(users.filter((user) => user._id !== id));
@@ -54,7 +54,7 @@ const AdminDashboard = () => {
     const token = localStorage.getItem('token');
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/admin/edit/${editUser._id}`,
+        `https://chayanonrod.onrender.com/api/admin/edit/${editUser._id}`,
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },

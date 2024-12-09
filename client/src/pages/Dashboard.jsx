@@ -11,7 +11,7 @@ const Dashboard = () => {
     const fetchUserDetails = async () => {
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get('http://localhost:5000/api/user/me', {
+        const response = await axios.get('https://chayanonrod.onrender.com/api/user/me', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(response.data);
@@ -30,7 +30,7 @@ const Dashboard = () => {
     const token = localStorage.getItem('token');
     try {
       const response = await axios.put(
-        'http://localhost:5000/api/user/update',
+        'https://chayanonrod.onrender.com/api/user/update',
         { name: newName },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -49,7 +49,7 @@ const Dashboard = () => {
     const token = localStorage.getItem('token');
     if (window.confirm('Are you sure you want to delete your account?')) {
       try {
-        await axios.delete('http://localhost:5000/api/user/delete', {
+        await axios.delete('https://chayanonrod.onrender.com/api/user/delete', {
           headers: { Authorization: `Bearer ${token}` },
         });
         alert('Account deleted successfully!');
