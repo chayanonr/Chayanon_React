@@ -10,30 +10,41 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(express.json());
-app.use(helmet());
-app.use(morgan('common'));
-app.use(cors());
+app.use(express.json()); // Parse JSON payloads
+app.use(helmet()); // Add security headers
+app.use(morgan('common')); // Log requests
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://your-frontend-domain.com'], // Replace with your frontend domains
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+}));
 
 // Import Routes
-const userRoutes = require('./routes/UserRoutes'); // Ensure this path is correct
-
+const userRoutes = require('./routes/UserRoutes');
+const adminRoutes = require('./routes/AdminRoutes');
 
 // Mount Routes
 app.use('/api', userRoutes);
-
-const adminRoutes = require('./routes/AdminRoutes'); // Import admin routes
-app.use('/api', adminRoutes); // Mount admin routes under "/api"
+app.use('/api', adminRoutes);
 
 // Default Route
 app.get('/', (req, res) => {
-  res.send('API is running...');
+  res.status(200).json({ message: 'API is running...' });
 });
 
+// MongoDB Connection
+mongoose.set('strictQuery', true); // Suppress Mongoose deprecation warnings
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log('Connected to MongoDB Atlas'))
+  .catch((err) => {
+    console.error('Error connecting to MongoDB Atlas:', err.message);
+    process.exit(1); // Exit the process if the connection fails
+  });
 
 // Start Server
 const PORT = process.env.PORT || 5000;
-mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => app.listen(PORT, () => console.log(`Server running on port ${PORT}`)))
-  .catch((err) => console.error(err));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
