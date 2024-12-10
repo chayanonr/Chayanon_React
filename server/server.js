@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
+const path = require('path');
 
 dotenv.config();
 
@@ -17,7 +18,7 @@ app.use(helmet({
 })); // Add security headers
 app.use(morgan('common')); // Log requests
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://chayanonrod.vercel.app'], // Update your frontend domains
+  origin: ['http://localhost:3000', 'https://chayanonrod.vercel.app'], // Update with your frontend domains
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
 }));
@@ -29,6 +30,9 @@ const apiLimiter = rateLimit({
   message: 'Too many requests from this IP, please try again later.',
 });
 app.use('/api', apiLimiter);
+
+// Static Files for Uploaded Images
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Import Routes
 const userRoutes = require('./routes/UserRoutes');
@@ -43,8 +47,8 @@ app.get('/', (req, res) => {
   res.status(200).json({ message: 'API is running...' });
 });
 
-// Catch-all route for undefined endpoints
-app.use((req, res, next) => {
+// Catch-All Route for Undefined Endpoints
+app.use((req, res) => {
   res.status(404).json({ error: 'Endpoint not found' });
 });
 

@@ -6,6 +6,8 @@ const Dashboard = () => {
   const [editMode, setEditMode] = useState(false);
   const [newName, setNewName] = useState('');
   const [loading, setLoading] = useState(true);
+  const [photo, setPhoto] = useState(null);
+  const [photoPreview, setPhotoPreview] = useState('');
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -15,6 +17,9 @@ const Dashboard = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(response.data);
+        if (response.data.photo) {
+          setPhotoPreview(response.data.photo); // Load existing photo if available
+        }
         setLoading(false);
       } catch (error) {
         console.error('Error fetching user details:', error);
@@ -62,6 +67,32 @@ const Dashboard = () => {
     }
   };
 
+  const handlePhotoChange = (e) => {
+    const file = e.target.files[0];
+    setPhoto(file);
+    setPhotoPreview(URL.createObjectURL(file)); // Show preview
+  };
+
+  const handlePhotoUpload = async () => {
+    const token = localStorage.getItem('token');
+    const formData = new FormData();
+    formData.append('photo', photo);
+
+    try {
+      const response = await axios.post('https://chayanonrod.onrender.com/api/user/upload-photo', formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      alert(response.data.message);
+      setPhotoPreview(response.data.filePath); // Update preview with uploaded photo
+    } catch (error) {
+      console.error('Error uploading photo:', error);
+      alert('Failed to upload photo.');
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -87,6 +118,30 @@ const Dashboard = () => {
       <p className="text-lg mb-6">
         <span className="font-semibold">Role:</span> {user.role}
       </p>
+
+      {/* Display Profile Photo */}
+      <div className="mb-6">
+        {photoPreview ? (
+          <img
+            src={photoPreview.startsWith('http') ? photoPreview : `https://chayanonrod.onrender.com${photoPreview}`}
+            alt="Profile"
+            className="w-24 h-24 rounded-full object-cover"
+          />
+        ) : (
+          <p className="text-gray-500">No profile photo uploaded.</p>
+        )}
+      </div>
+
+      {/* Photo Upload */}
+      <div className="mb-6">
+        <input type="file" accept="image/*" onChange={handlePhotoChange} className="mb-4" />
+        <button
+          onClick={handlePhotoUpload}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+        >
+          Upload Photo
+        </button>
+      </div>
 
       {!editMode ? (
         <div className="space-x-4">
