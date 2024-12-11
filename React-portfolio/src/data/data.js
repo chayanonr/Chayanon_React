@@ -14,46 +14,52 @@ import DB from "../assets/projects/db.png";
 import veteran from "../assets/projects/veteran.jpg";
 import Scrapper from "../assets/projects/scraper.png";
 import Twitter from "../assets/projects/Twitter.jpg";
+import Ecom from "../assets/projects/ecom.png";
+import TTS from "../assets/projects/text-to-speech.png";
+import BKYC from "../assets/projects/bank-kyc.png";
+import CCV from "../assets/projects/creditcard.png";
+import TZ from "../assets/projects/tezies.png";
+
 export const data = [
   {
     id: 1,
-    name: "Remote Care (Android + Web + Iot)",
-    image: Remcare,
-    github: "not",
-    live: "https://www.youtube.com/watch?v=eiOggXuPx6M&ab_channel=HanzlaSib",
+    name: "E-commerce-website",
+    image: Ecom,
+    github: "https://github.com/chayanonr/chayanonrod/tree/main/E-commerceWebsite",
+    live: "https://e-commerce-sandy-iota-30.vercel.app/",
     link2: "",
   },
   {
     id: 2,
-    name: "H.Eats (React)",
-    image: HEat,
-    github: "https://github.com/hanzla-sib/H.Eats",
-    live: "https://hanzla-sib.github.io/H.Eats/",
-    link2: "https://youtu.be/9yklmRIKlYI",
+    name: "Text-to-speech",
+    image: TTS,
+    github: "https://github.com/chayanonr/chayanonrod/tree/main/text_to_speech",
+    live: "https://text-to-speech-vert-one.vercel.app/",
+    link2: "",
   },
   {
     id: 4,
-    name: "Twitter Clone Next.js+Tailwind",
-    image: Twitter,
-    github: "https://github.com/hanzla-sib/Twitter-2.0",
-    live: "https://twitter-2-0-nu.vercel.app/",
+    name: "Bank-kyc",
+    image: BKYC,
+    github: "https://github.com/chayanonr/chayanonrod/tree/main/Bank-KYC-Form",
+    live: "https://chayanonrod-levf.vercel.app/",
     link2: "",
   },
   {
     id: 5,
-    name: "Airbnb Clone (Mern)",
-    image: Airbnb,
-    github: "https://github.com/hanzla-sib/H.Hotle-Booking",
-    live: "https://youtu.be/MSRv4ToY9nQ",
+    name: "Credit-Card-Validator",
+    image: CCV,
+    github: "https://github.com/chayanonr/chayanonrod/tree/main/Credit-Card-Validator",
+    live: "https://credit-card-validator-olive.vercel.app/",
     link2: "",
   },
 
   {
     id: 6,
-    name: "React-DashBoard",
-    image: Dashboard,
-    github: "https://github.com/hanzla-sib/React-Dashboard",
-    live: "https://youtu.be/aErSW3tExdg",
+    name: "Tenzies-game",
+    image: TZ,
+    github: "https://github.com/chayanonr/chayanonrod/tree/main/react-tenzies-game",
+    live: "https://tenzies-game-smoky-tau.vercel.app/",
     link2: "",
   },
   {
