@@ -34,6 +34,9 @@ const Navbar = () => {
               </>
             ) : (
               <>
+                <Link to="/projects" className="hover:bg-blue-700 px-3 py-2 rounded">
+                  Projects
+                </Link>
                 <Link to="/dashboard" className="hover:bg-blue-700 px-3 py-2 rounded">
                   Dashboard
                 </Link>

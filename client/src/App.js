@@ -9,6 +9,7 @@ const RegisterPage = React.lazy(() => import('./pages/RegisterPage'));
 const LoginPage = React.lazy(() => import('./pages/LoginPage'));
 const Dashboard = React.lazy(() => import('./pages/Dashboard'));
 const AdminDashboard = React.lazy(() => import('./pages/AdminDashboard'));
+const ProjectsPage = React.lazy(() => import('./pages/Projects'));
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
           {/* Protected route for user dashboard */}
           <Route
             path="/dashboard"
