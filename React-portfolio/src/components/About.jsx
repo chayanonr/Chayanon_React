@@ -1,29 +1,56 @@
-import React from 'react';
+import React from "react";
+import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
+import { FaGraduationCap, FaBriefcase } from "react-icons/fa";
 
 const About = () => {
   return (
-    <div name='about' className='w-full h-screen bg-[#0a192f] text-gray-300'>
-      <div className='flex flex-col justify-center items-center w-full h-full'>
-        <div className='max-w-[1000px] w-full grid grid-cols-2 gap-8'>
-          <div className='sm:text-right pb-8 pl-4'>
-            <p className='text-4xl font-bold inline border-b-4 border-pink-600'>
-              About
+    <div name="about" className="w-full min-h-screen bg-[#0a192f] text-gray-300 py-16">
+      <div className="max-w-[1000px] mx-auto px-8 flex flex-col justify-center h-full">
+        <h2
+          className="text-4xl font-bold inline border-b-4 border-pink-600 mb-8"
+          data-aos="fade-up"
+        >
+          About Me
+        </h2>
+        <p className="text-lg mb-8" data-aos="fade-up">
+          Hi! I’m Chayanon Rodjanawon, a passionate full-stack developer with a love for solving
+          complex problems through code. Here’s a glimpse into my journey:
+        </p>
+
+        {/* Timeline */}
+        <VerticalTimeline>
+          {/* Education */}
+          <VerticalTimelineElement
+            className="vertical-timeline-element--education"
+            contentStyle={{ background: "#1e293b", color: "#fff" }}
+            contentArrowStyle={{ borderRight: "7px solid #1e293b" }}
+            date="2018 - 2022"
+            iconStyle={{ background: "#ff69b4", color: "#fff" }}
+            icon={<FaGraduationCap />}
+          >
+            <h3 className="vertical-timeline-element-title">Bachelor's Degree in Computer Science</h3>
+            <h4 className="vertical-timeline-element-subtitle">SIIT || Thammasat University</h4>
+            <p>Graduated with enjoyment.</p>
+          </VerticalTimelineElement>
+
+          {/* Work Experience */}
+          <VerticalTimelineElement
+            className="vertical-timeline-element--work"
+            contentStyle={{ background: "#1e293b", color: "#fff" }}
+            contentArrowStyle={{ borderRight: "7px solid #1e293b" }}
+            date="2022 - Present"
+            iconStyle={{ background: "#ff69b4", color: "#fff" }}
+            icon={<FaBriefcase />}
+          >
+            <h3 className="vertical-timeline-element-title">Full Stack Developer</h3>
+            <h4 className="vertical-timeline-element-subtitle">Gold Durian Co.,Ltd</h4>
+            <p>
+              Build and maintain Web application to a fruit exporter company.
             </p>
-          </div>
-          <div></div>
-          </div>
-          <div className='max-w-[1000px] w-full grid sm:grid-cols-2 gap-8 px-4'>
-            <div className='sm:text-right text-4xl font-bold'>
-              <p>Hi. I'm Chayanon Rodjanawon, nice to meet you. Please take a look around.</p>
-            </div>
-            <div>
-              <p>I am passionate about building excellent software that improves
-              the lives of those around me. I specialize in creating software
-              for clients ranging from individuals and small-businesses all the
-              way to large enterprise corporations. What would you do if you had
-              a software expert available at your fingertips?</p>  
-            </div>
-          </div>
+          </VerticalTimelineElement>
+          
+        </VerticalTimeline>
       </div>
     </div>
   );
