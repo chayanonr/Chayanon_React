@@ -61,8 +61,8 @@ export const data = [
     github: "https://github.com/chayanonr/chayanonrod/tree/main/react-tenzies-game",
     live: "https://tenzies-game-smoky-tau.vercel.app/",
     link2: "",
-  },
-  {
+  }
+  /*{
     id: 7,
     name: "React Background Remover",
     image: Remover,
@@ -134,5 +134,5 @@ export const data = [
     github: "https://github.com/hanzla-sib/Daraz_Scrapper",
     live: "",
     link2: "",
-  },
+  },*/
 ];
